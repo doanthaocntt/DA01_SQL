@@ -8,9 +8,8 @@ SELECT COUNT(CITY) - COUNT(DISTINCT CITY)
 FROM STATION
 
 --3. https://www.hackerrank.com/challenges/the-blunder/problem?isFullScreen=true
-/*
-Làm sau 
-*/
+SELECT CEILING(AVG(salary) - AVG(REPLACE(salary, '0', '')))
+FROM EMPLOYEES
 
 --4. https://datalemur.com/questions/alibaba-compressed-mean
 

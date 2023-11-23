@@ -174,6 +174,12 @@ Task: Tìm các địa chỉ không liên quan đến bất kỳ khách hàng n�
 Question: Có bao nhiêu địa chỉ như vậy?
 Answer: 4
 */
+SELECT 
+COUNT(1) FILTER 
+(WHERE  b.address_id is null) AS so_luong
+FROM address as a
+LEFT JOIN customer as b 
+ON a.address_id = b.address_id 
 
 
 /*

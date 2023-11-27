@@ -146,6 +146,33 @@ WHERE avg_rating IN (
 ORDER BY title LIMIT 1)
 
   
+---Cách 2:
+  WITH cte
+AS (
+	SELECT a.name AS results
+	FROM Users AS a
+	JOIN MovieRating AS b ON a.user_id = b.user_id
+	GROUP BY a.name
+	ORDER BY count(*) DESC
+		,a.name limit 1
+	)
+	,cte2
+AS (
+	SELECT c.title AS results
+	FROM Movies AS c
+	JOIN MovieRating AS d ON c.movie_id = d.movie_id
+	WHERE extract(month FROM d.created_at) = 2
+		AND extract(year FROM d.created_at) = 2020
+	GROUP BY c.title
+	ORDER BY avg(rating) DESC
+		,c.title limit 1
+	)
+SELECT *
+FROM cte
+UNION ALL
+SELECT *
+
+  
 --12. https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends/?envType=study-plan-v2&envId=top-sql-50
 With cte_friends AS
 (
